@@ -22,6 +22,56 @@ Example 3:
 
 Input: s = "(]"
 Output: false
+
+
+
+//Code C# Prgramming.........................
+
+class Solution {
+    public bool IsValid(string s) {
+        // Create a stack to keep track of open brackets.
+        Stack<char> stack = new Stack<char>();
+
+        // Define a mapping of open and close brackets.
+        Dictionary<char, char> bracketMapping = new Dictionary<char, char> {
+            { '(', ')' },
+            { '[', ']' },
+            { '{', '}' }
+        };
+
+        // Iterate through each character in the string.
+        foreach (char c in s) {
+            // If the character is an open bracket, push it onto the stack.
+            if (bracketMapping.ContainsKey(c)) {
+                stack.Push(c);
+            }
+            // If the character is a close bracket.
+            else {
+                // If the stack is empty or the top of the stack does not match the current character, return false.
+                if (stack.Count == 0 || bracketMapping[stack.Pop()] != c) {
+                    return false;
+                }
+            }
+        }
+
+        // After processing the string, the stack should be empty if it's valid.
+        return stack.Count == 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
 
 Constraints:
